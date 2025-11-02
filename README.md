@@ -1,6 +1,6 @@
 # Error Building Storybook Project
 
-This repository contains a minimum Storybook project to demonstrate this build error, which started occurring after upgrading from Storybook 9 to 10:
+This repository contains a minimum Storybook project to demonstrate this build error, which started occurring after upgrading from Storybook 9 to 10 and ws reported as [#32918](https://github.com/storybookjs/storybook/issues/32918):
 
 ```
 Failed to load preset: {"type":"presets","name":"/Users/ferdipr/Sources/github/storybook-document-error/addons/smartui/register.js"} on level 1
@@ -10,6 +10,10 @@ ReferenceError: document is not defined
 
 How to reproduce it:
 
+    git clone https://github.com/prantlf/storybook-document-error.git
+    cd storybook-document-error
+    npm ci
+    npm run build
 
 The error disappears, if the following two lines in `addons/smartui/panel.js` are commented out:
 
@@ -106,3 +110,9 @@ ReferenceError: document is not defined
     at async Promise.all (index 2)
     at async loadPresets (file://./node_modules/storybook/dist/_node-chunks/chunk-TLGQ3DFY.js:10777:11)
 ```
+
+## Storybook 9
+
+This is the branch `master`, which shows the error. If you want to see how the same sources working, switch to the branch `storybook9`. It builds well and displays the panel addon:
+
+![Smart UI Panel](./smartui-panel.png)
